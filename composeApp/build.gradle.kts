@@ -41,8 +41,12 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-
+            //common viewmodel
             implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.9.5")
+
+            //navigation
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.1")
+
 
         }
         commonTest.dependencies {

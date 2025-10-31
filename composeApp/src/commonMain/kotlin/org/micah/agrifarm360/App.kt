@@ -1,29 +1,14 @@
 package org.micah.agrifarm360
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
+import androidx.compose.runtime.Composable
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
-import agrifarm360.composeapp.generated.resources.Res
-import agrifarm360.composeapp.generated.resources.compose_multiplatform
-import org.micah.agrifarm360.ui.screens.splash.presentation.SplashScreen
+import org.micah.agrifarm360.core.navigation.AppNavHost
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        SplashScreen()
+        AppNavHost()
     }
 }
