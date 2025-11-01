@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import org.micah.agrifarm360.core.navigation.AppNavHost
+import org.micah.agrifarm360.ui.theme.AgriFarm360Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +15,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            App()
+            AgriFarm360Theme {
+                AppNavHost()
+            }
         }
     }
 }

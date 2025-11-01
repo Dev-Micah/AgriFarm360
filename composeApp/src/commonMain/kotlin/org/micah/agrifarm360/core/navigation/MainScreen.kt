@@ -33,6 +33,7 @@ import org.micah.agrifarm360.ui.screens.revenue.presentation.RevenueScreen
 import org.micah.agrifarm360.ui.screens.workers.presentation.WorkersScreen
 
 
+@Suppress("SuspiciousIndentation")
 @Composable
 fun MainNavGraph(){
     val navController= rememberNavController()
