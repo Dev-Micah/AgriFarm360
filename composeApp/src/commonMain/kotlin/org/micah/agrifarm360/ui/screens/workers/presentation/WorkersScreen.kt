@@ -82,9 +82,10 @@ fun WorkersScreen(){
                         )
                     },
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = Color.Black.copy(
-                            alpha = 0.2f
-                        ),
+                        focusedBorderColor = Color.Transparent,
+                        unfocusedBorderColor = Color.Transparent,
+                        focusedContainerColor = Color(0xFFE6F4EA),
+                        unfocusedContainerColor = Color(0xFFE6F4EA)
                     )
                 )
 
@@ -104,7 +105,11 @@ fun WorkersScreen(){
             }
         }
     ) {
-        WorkersListScreen(dummyWorkers)
+        Column(
+            modifier = Modifier.padding(top = 200.dp)
+        ) {
+            WorkersListScreen(dummyWorkers)
+        }
     }
 }
 
