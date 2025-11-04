@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -36,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
+import org.micah.agrifarm360.ui.components.WorkerItemShimmer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -108,7 +110,10 @@ fun WorkersScreen(){
         Column(
             modifier = Modifier.padding(top = 200.dp)
         ) {
-            WorkersListScreen(dummyWorkers)
+            repeat(7) {
+                WorkerItemShimmer()
+                //WorkersListScreen(dummyWorkers)
+            }
         }
     }
 }
