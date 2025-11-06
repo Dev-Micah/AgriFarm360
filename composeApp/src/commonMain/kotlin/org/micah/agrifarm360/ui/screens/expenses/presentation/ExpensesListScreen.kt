@@ -35,20 +35,20 @@ data class Expenses(
 val dummyExpenses = listOf(
     Expenses(
         "Allowances", 35000.8,
-        "Salary" ,"12 Oct 2025",
+        "Salary", "12 Oct 2025",
         "Paid workers Allowances"
     )
 )
 
 @Composable
-fun ExpensesListScreen(expenses: List<Expenses>){
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(expenses) { expense ->
-                ExpenseItem(
-                    expense = expense,
-                )
-            }
+fun ExpensesListScreen(expenses: List<Expenses>) {
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        items(expenses) { expense ->
+            ExpenseItem(
+                expense = expense,
+            )
         }
+    }
 }
 
 @Composable

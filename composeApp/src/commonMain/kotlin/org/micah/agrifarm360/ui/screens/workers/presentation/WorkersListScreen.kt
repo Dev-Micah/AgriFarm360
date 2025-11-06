@@ -35,25 +35,25 @@ data class Worker(
     val phoneNumber: Int,
     val presence: String,
     val position: String
-        )
+)
 
 val dummyWorkers = listOf(
-    Worker("Micah Nyabuto", 711223344, "Present", "Farm Manager"),
+    Worker("John Muchiri", 711223344, "Present", "Farm Manager"),
     Worker("Brian Otieno", 722334455, "Absent", "Field Worker"),
     Worker("Sila Nyanducha", 733445566, "Present", "Picker"),
-    Worker("David Kiptoo", 744556677, "Late", "Tractor Driver"),
+    Worker("Micah Nyabuto", 744556677, "Late", "Tractor Driver"),
     Worker("Eunice Akinyi", 755667788, "Present", "Store Clerk")
 )
 
 
 @Composable
-fun WorkersListScreen(workers: List<Worker>){
+fun WorkersListScreen(workers: List<Worker>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(workers) { worker ->
             WorkerItem(
                 worker = worker,
-                onCallClick = {} ,
-                onEditClick ={}
+                onCallClick = {},
+                onEditClick = {}
             )
         }
     }
@@ -64,20 +64,20 @@ fun WorkerItem(
     worker: Worker,
     onCallClick: () -> Unit,
     onEditClick: (Worker) -> Unit
-){
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical  = 12.dp),
+            .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         Box(
             modifier = Modifier
                 .size(48.dp)
                 .clip(CircleShape)
                 .background(Color(0xFFE6F4EA)),
             contentAlignment = Alignment.Center
-        ){
+        ) {
             val initials = worker.name
                 .split(" ")
                 .filter { it.isNotBlank() }
@@ -108,7 +108,7 @@ fun WorkerItem(
             )
         }
 
-        IconButton(onClick = { onCallClick()}) {
+        IconButton(onClick = { onCallClick() }) {
             Icon(
                 painter = painterResource(Res.drawable.phonecall),
                 contentDescription = "Call Worker"
