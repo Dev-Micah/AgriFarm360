@@ -5,8 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import org.micah.agrifarm360.core.navigation.AppNavHost
+import org.micah.agrifarm360.db.getDatabaseBuilder
+import org.micah.agrifarm360.features.tasks.data.local.getTaskDatabase
 import org.micah.agrifarm360.ui.theme.AgriFarm360Theme
 
 class MainActivity : ComponentActivity() {
@@ -15,9 +18,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            AgriFarm360Theme {
-                AppNavHost()
-            }
+            App(
+                database = getTaskDatabase(getDatabaseBuilder(this@MainActivity))
+            )
+
         }
     }
 }
@@ -25,5 +29,7 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    App()
+    val database = getTaskDatabase(getDatabaseBuilder(LocalContext.current))
+    App(database)
+
 }

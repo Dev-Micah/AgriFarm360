@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTask(item: TaskEntity)
+    suspend fun insertTask(task: TaskEntity)
 
     @Delete
     suspend fun deleteHabit(task: TaskEntity)
 
     @Query("SELECT * FROM tasks ORDER BY id ASC ")
-    fun allHabits (): Flow<List<TaskEntity>>
+    fun getAllHabits (): Flow<List<TaskEntity>>
 
 
 }

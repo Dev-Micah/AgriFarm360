@@ -8,7 +8,7 @@ import org.micah.agrifarm360.features.tasks.data.local.TaskDatabase
 
 fun getDatabaseBuilder(context: Context): RoomDatabase.Builder<TaskDatabase> {
     val appContext = context.applicationContext
-    val dbFile = appContext.getDatabasePath("my_room.db")
+    val dbFile = appContext.getDatabasePath("task_database.db")
     return Room.databaseBuilder<TaskDatabase>(
         context = appContext,
         name = dbFile.absolutePath
