@@ -1,6 +1,6 @@
 package org.micah.agrifarm360.core.navigation
 
-import MainNavGraph
+import MainScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -22,7 +22,7 @@ fun AppNavHost(
             SplashScreen(navController = navController)
         }
         composable (Destinations.Main.route){
-            MainNavGraph()
+            MainScreen()
         }
 
     }

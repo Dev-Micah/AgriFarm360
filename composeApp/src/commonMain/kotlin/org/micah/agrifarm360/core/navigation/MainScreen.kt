@@ -35,7 +35,7 @@ import org.micah.agrifarm360.ui.screens.workers.presentation.WorkersScreen
 
 @Suppress("SuspiciousIndentation")
 @Composable
-fun MainNavGraph(){
+fun MainScreen(){
     val navController= rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route.orEmpty()

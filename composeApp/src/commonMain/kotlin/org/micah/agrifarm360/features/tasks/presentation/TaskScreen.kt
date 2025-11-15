@@ -33,7 +33,7 @@ fun TaskScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
             Text(
-                text = "My Tasks",
+                text = "Scheduled Tasks",
                 modifier = Modifier.padding(16.dp),
                 style = MaterialTheme.typography.titleLarge
             )
