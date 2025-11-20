@@ -8,7 +8,7 @@ import org.micah.agrifarm360.features.tasks.domain.repository.TaskRepository
 class TaskRepositoryImpl(private val taskDao: TaskDao) : TaskRepository{
 
 
-    override fun getAllHabits(): Flow<List<TaskEntity>> {
+    override fun getAllTasks(): Flow<List<TaskEntity>> {
         return taskDao.getAllHabits()
     }
 
