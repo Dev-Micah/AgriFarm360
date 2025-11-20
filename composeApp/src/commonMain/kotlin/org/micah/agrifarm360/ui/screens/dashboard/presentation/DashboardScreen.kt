@@ -36,10 +36,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
+import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen() {
+    //val taskViewModel: TaskViewModel =
     var showDialog by remember { mutableStateOf(false) }
     Scaffold(
         topBar = {
@@ -84,7 +86,7 @@ fun DashboardScreen() {
                 onClick = {
                     showDialog = true
                 },
-                shape = RoundedCornerShape(50.dp),
+                shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.padding(bottom = 80.dp),
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
