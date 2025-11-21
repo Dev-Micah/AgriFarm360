@@ -60,6 +60,9 @@ kotlin {
             //koin
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
+            implementation(libs.koin.compose.viewmodel)
+            implementation("io.insert-koin:koin-compose:4.1.1")
+
 
 
         }
