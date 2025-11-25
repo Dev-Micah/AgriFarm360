@@ -36,13 +36,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
+import org.micah.agrifarm360.features.tasks.presentation.TasksSection
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalTime::class)
 @Composable
-fun DashboardScreen() {
-    //val taskViewModel: TaskViewModel =
+fun DashboardScreen(
+    viewModel: TaskViewModel = koinViewModel<TaskViewModel>()
+) {
     var showDialog by remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -100,13 +107,27 @@ fun DashboardScreen() {
     ) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) {
 
-            //Other Dashboard content
+            DashboardSummaryCards(
+                totalRevenue = "120,500",
+                totalExpenses = "45,200",
+                activeWorkers = "8"
+            )
+
+            TasksSection(
+                viewModel = viewModel
+            )
 
             AddTaskAlertDialog(
                 showDialog = showDialog,
                 onCancel = { showDialog = false },
-                onSaveTask = { task ->
-                    println("Task saved: $task")
+                onSaveTask = { name ->
+                    val task = TaskEntity(
+                        id = 0,
+                        name = name,
+                        createdAt = Clock.System.now().toString(),
+                    )
+
+                    viewModel.addTask(task)
                     showDialog = false
                 }
             )
@@ -157,11 +178,8 @@ fun DashboardScreen() {
                 confirmButton = {
                     Button(
                         onClick = {
-                            if (taskText.isNotBlank()) {
-                                onSaveTask(taskText.trim())
-                                taskText = ""
-                                onCancel()
-                            }
+                                onSaveTask(taskText)
+
                         }
                     ) {
                         Text("Save")
