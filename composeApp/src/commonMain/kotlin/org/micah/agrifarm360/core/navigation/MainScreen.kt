@@ -24,8 +24,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
 import org.micah.agrifarm360.core.navigation.BottomNavigation
 import org.micah.agrifarm360.core.navigation.Destinations
+import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
+import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 import org.micah.agrifarm360.ui.screens.dashboard.presentation.DashboardScreen
 import org.micah.agrifarm360.ui.screens.expenses.presentation.ExpensesScreen
 import org.micah.agrifarm360.ui.screens.reports.presentation.ReportsScreen
@@ -43,6 +46,7 @@ fun MainScreen(){
     val showBottomNavigation = currentRoute !in listOf(
         Destinations.Splash.route,
     )
+    val viewModel : TaskViewModel = koinViewModel<TaskViewModel>()
 
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
@@ -104,7 +108,9 @@ fun MainScreen(){
                 ) {
 
                     composable(Destinations.Dashboard.route) {
-                        DashboardScreen()
+                        DashboardScreen(
+                            viewModel = viewModel,
+                        )
                     }
                     composable(Destinations.Revenue.route) {
                         RevenueScreen()

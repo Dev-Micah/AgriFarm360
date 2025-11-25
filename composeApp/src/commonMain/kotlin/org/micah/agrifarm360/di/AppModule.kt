@@ -1,8 +1,7 @@
 package org.micah.agrifarm360.di
 
-import androidx.lifecycle.viewmodel.compose.viewModel
 import org.koin.core.context.startKoin
-import org.koin.core.module.dsl.viewModelOf
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import org.micah.agrifarm360.features.tasks.data.local.TaskDatabase
@@ -12,9 +11,9 @@ import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 
 val taskDataSourceModule = module{
     single { get<TaskDatabase>().taskDao() }
-    single <TaskRepository> { TaskRepositoryImpl(get()) }
-
-    viewModelOf(::TaskViewModel)
+    single<TaskRepository>{ TaskRepositoryImpl(taskDao = get ()) }
+    //viewModelOf(::TaskViewModel)
+    viewModel { TaskViewModel(taskRepository = get()) }
 }
 
 
@@ -23,6 +22,9 @@ fun initKoin(config: KoinAppDeclaration? = null){
     startKoin {
         config?.invoke(this)
 
-        modules(taskDataSourceModule)
+        modules(
+            platformModule,
+            taskDataSourceModule
+        )
     }
 }

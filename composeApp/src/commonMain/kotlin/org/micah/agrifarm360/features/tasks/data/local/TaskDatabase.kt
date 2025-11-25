@@ -8,7 +8,7 @@ import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 
-@Database(entities = [TaskEntity::class], version = 1)
+@Database(entities = [TaskEntity::class], version = 1, exportSchema = false)
 @ConstructedBy(TaskDatabaseConstructor::class)
 abstract class TaskDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDao
@@ -25,5 +25,6 @@ fun getTaskDatabase(
     return builder
         .setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
+        //.fallbackToDestructiveMigration()
         .build()
 }

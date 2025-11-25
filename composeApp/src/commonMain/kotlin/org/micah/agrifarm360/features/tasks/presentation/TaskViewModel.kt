@@ -11,9 +11,11 @@ import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
 import org.micah.agrifarm360.features.tasks.domain.repository.TaskRepository
 
 class TaskViewModel (private val taskRepository: TaskRepository): ViewModel(){
+    private val _tasks = MutableStateFlow<List<TaskEntity>>(emptyList())
 
     private val _uiState = MutableStateFlow(TaskUiState())
     val uiState : StateFlow<TaskUiState> = _uiState
+    val tasks: StateFlow<List<TaskEntity>> = _tasks
 
     init {
         loadTasks()
@@ -21,7 +23,9 @@ class TaskViewModel (private val taskRepository: TaskRepository): ViewModel(){
 
     fun addTask(task: TaskEntity){
         viewModelScope.launch {
-            taskRepository.insertTask(task)
+            taskRepository.insertTask(
+                task = task
+            )
         }
     }
 
@@ -31,7 +35,7 @@ class TaskViewModel (private val taskRepository: TaskRepository): ViewModel(){
             taskRepository.getAllTasks()
                 .onEach { tasks ->
                     _uiState.value = _uiState.value.copy(
-                        habits = tasks,
+                        tasks = tasks,
                         isLoading = false
                     )
                 }
@@ -47,6 +51,6 @@ class TaskViewModel (private val taskRepository: TaskRepository): ViewModel(){
 
 data class TaskUiState(
     val isLoading: Boolean = false,
-    val habits: List<TaskEntity> = emptyList(),
+    val tasks: List<TaskEntity> = emptyList(),
     val error: String? = null
 )

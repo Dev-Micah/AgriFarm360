@@ -8,6 +8,4 @@ data class TaskEntity(
     @PrimaryKey(autoGenerate = true) val id: Int =1,
     val name: String,
     val createdAt: String,
-    val scheduleTime: Long,
-    val completionState: String
 )
