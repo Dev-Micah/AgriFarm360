@@ -35,8 +35,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import org.jetbrains.compose.resources.painterResource
-import org.koin.compose.viewmodel.koinViewModel
+import org.koin.compose.koinInject
 import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 import org.micah.agrifarm360.features.tasks.presentation.TasksSection
@@ -46,7 +47,8 @@ import kotlin.time.ExperimentalTime
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalTime::class)
 @Composable
 fun DashboardScreen(
-    viewModel: TaskViewModel = koinViewModel<TaskViewModel>()
+    navController: NavController,
+    viewModel: TaskViewModel = koinInject()
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -107,14 +109,15 @@ fun DashboardScreen(
     ) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) {
 
-            DashboardSummaryCards(
+            DashboardCards(
                 totalRevenue = "120,500",
                 totalExpenses = "45,200",
                 activeWorkers = "8"
             )
 
             TasksSection(
-                viewModel = viewModel
+                viewModel = viewModel,
+                navController = navController
             )
 
             AddTaskAlertDialog(
@@ -126,9 +129,8 @@ fun DashboardScreen(
                         name = name,
                         createdAt = Clock.System.now().toString(),
                     )
-
-                    viewModel.addTask(task)
                     showDialog = false
+                    viewModel.addTaskEvent(task)
                 }
             )
         }
