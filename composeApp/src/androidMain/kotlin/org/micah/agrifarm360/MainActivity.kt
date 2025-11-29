@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             App(
-                database = getTaskDatabase(getDatabaseBuilder(this@MainActivity))
+               database = getTaskDatabase(getDatabaseBuilder(this@MainActivity))
             )
 
         }

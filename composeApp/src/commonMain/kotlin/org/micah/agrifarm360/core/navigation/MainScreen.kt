@@ -29,6 +29,7 @@ import org.micah.agrifarm360.core.navigation.BottomNavigation
 import org.micah.agrifarm360.core.navigation.Destinations
 import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
+import org.micah.agrifarm360.features.tasks.presentation.TasksSection
 import org.micah.agrifarm360.ui.screens.dashboard.presentation.DashboardScreen
 import org.micah.agrifarm360.ui.screens.expenses.presentation.ExpensesScreen
 import org.micah.agrifarm360.ui.screens.reports.presentation.ReportsScreen
@@ -45,6 +46,7 @@ fun MainScreen(){
 
     val showBottomNavigation = currentRoute !in listOf(
         Destinations.Splash.route,
+        Destinations.Tasks.route
     )
     val viewModel : TaskViewModel = koinViewModel<TaskViewModel>()
 
@@ -110,6 +112,7 @@ fun MainScreen(){
                     composable(Destinations.Dashboard.route) {
                         DashboardScreen(
                             viewModel = viewModel,
+                            navController = navController
                         )
                     }
                     composable(Destinations.Revenue.route) {
@@ -123,6 +126,12 @@ fun MainScreen(){
                     }
                     composable(Destinations.Workers.route) {
                         WorkersScreen()
+                    }
+                    composable(Destinations.Tasks.route) {
+                        TasksSection(
+                            navController = navController,
+                            viewModel = viewModel
+                        )
                     }
 
 

@@ -12,6 +12,8 @@ actual val platformModule = module {
             context = androidContext(),
             klass = TaskDatabase::class.java,
             name = "task_database.db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }

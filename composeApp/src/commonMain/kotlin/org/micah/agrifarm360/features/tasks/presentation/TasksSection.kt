@@ -1,5 +1,7 @@
 package org.micah.agrifarm360.features.tasks.presentation
 
+import agrifarm360.composeapp.generated.resources.Res
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +17,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -25,9 +31,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import org.micah.agrifarm360.core.navigation.Destinations
 import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
@@ -82,7 +90,7 @@ fun TasksSection(
             else -> {
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth(),
-                    contentPadding = PaddingValues(16.dp),
+                    //contentPadding = PaddingValues(16.dp),
                 ) {
                     items(uiState.tasks.take(5)) { task ->
                         TaskItem(task = task)
@@ -98,44 +106,51 @@ fun TaskItem(
         task: TaskEntity,
         modifier: Modifier = Modifier
     ) {
-        Row(
+    Card(
+        modifier = modifier.fillMaxWidth()
+            .padding(start = 24.dp , end = 24.dp, bottom = 4.dp),
+        border = BorderStroke(
+            width = 0.5.dp,
+            color =MaterialTheme.colorScheme.onSurface.copy(
+                alpha =0.1f
+            )
+        ),
+        shape = MaterialTheme.shapes.small,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Row {
+        Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(vertical = 4.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(
-                        color = Color(0xFF4CAF50),
-                        shape = RoundedCornerShape(20.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            Column {
-                Text(
-                    text = task.name,
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 16.sp
-                    )
+            Text(
+                text = task.name,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.bodyLarge.copy(
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 16.sp
                 )
-                Text(
-                    text = task.createdAt,
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
-                        fontSize = 13.sp
-                    )
+            )
+            Text(
+                text = task.createdAt,
+                style = MaterialTheme.typography.bodySmall.copy(
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
+                    fontSize = 13.sp
                 )
-            }
+            )
         }
+
+            IconButton(onClick = {}){
+
+            }
     }
+}
+
+}
 
 @Composable
 fun EmptyTasksScreen() {
