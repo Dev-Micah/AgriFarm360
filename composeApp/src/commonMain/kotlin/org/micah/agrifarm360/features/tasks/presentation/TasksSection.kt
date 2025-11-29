@@ -19,7 +19,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -28,25 +27,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.koin.compose.viewmodel.koinViewModel
+import androidx.navigation.NavController
+import org.koin.compose.koinInject
+import org.micah.agrifarm360.core.navigation.Destinations
 import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
 import org.micah.agrifarm360.ui.components.WorkerItemShimmer
 
 @Composable
 fun TasksSection(
-    viewModel: TaskViewModel = koinViewModel()
+    navController: NavController,
+    viewModel: TaskViewModel = koinInject()
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val tasksList by viewModel.tasks.collectAsStateWithLifecycle()
-
-    LaunchedEffect(Unit) {
-        viewModel.loadTasks()
-    }
+    val uiState by viewModel.uiState.collectAsState()
 
     Column(modifier = Modifier.fillMaxWidth()) {
 
-        // ---- Header row ----
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -61,7 +56,7 @@ fun TasksSection(
                     fontSize = 18.sp
                 )
             )
-            TextButton(onClick = {}) {
+            TextButton(onClick = {navController.navigate(Destinations.Tasks.route)}) {
                 Text(
                     text = "View All",
                     color = MaterialTheme.colorScheme.primary,
@@ -77,10 +72,10 @@ fun TasksSection(
             }
 
             uiState.error != null -> {
-                Text("Error loading tasks")
+                Text("Error loading tasks: ${uiState.error}")
             }
 
-            tasksList.isEmpty() -> {
+            uiState.tasks.isEmpty() -> {
                 EmptyTasksScreen()
             }
 
@@ -89,7 +84,7 @@ fun TasksSection(
                     modifier = Modifier.fillMaxWidth(),
                     contentPadding = PaddingValues(16.dp),
                 ) {
-                    items(tasksList) { task ->
+                    items(uiState.tasks.take(5)) { task ->
                         TaskItem(task = task)
                     }
                 }

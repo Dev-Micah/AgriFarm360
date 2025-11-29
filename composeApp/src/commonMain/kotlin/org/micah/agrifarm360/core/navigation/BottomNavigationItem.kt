@@ -3,11 +3,9 @@ package org.micah.agrifarm360.core.navigation
 import agrifarm360.composeapp.generated.resources.Res
 import agrifarm360.composeapp.generated.resources.dashboard
 import agrifarm360.composeapp.generated.resources.expense
-import agrifarm360.composeapp.generated.resources.reports
 import agrifarm360.composeapp.generated.resources.revenue
 import agrifarm360.composeapp.generated.resources.workers
 import org.jetbrains.compose.resources.DrawableResource
-import org.micah.agrifarm360.ui.screens.revenue.presentation.RevenueScreen
 
 enum class BottomNavigation(
     val label: String,
@@ -34,12 +32,12 @@ enum class BottomNavigation(
         unselectedIcon = Res.drawable.expense,
         route = Destinations.Expenses.route
     ),
-    Reports(
-        label = "Reports",
-        selectedIcon = Res.drawable.reports,
-        unselectedIcon = Res.drawable.reports,
-        route = Destinations.Reports.route
-    ),
+//    Reports(
+//        label = "Reports",
+//        selectedIcon = Res.drawable.reports,
+//        unselectedIcon = Res.drawable.reports,
+//        route = Destinations.Reports.route
+//    ),
     Workers(
         label = "Workers",
         selectedIcon = Res.drawable.workers,
