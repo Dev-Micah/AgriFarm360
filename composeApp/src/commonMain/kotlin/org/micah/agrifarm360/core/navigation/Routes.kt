@@ -5,6 +5,8 @@ sealed class Destinations(val route: String) {
     object Expenses: Destinations("expenses")
     object Onboarding: Destinations("onboarding")
     object Profile: Destinations("profile")
+
+    object Tasks: Destinations("tasks")
     object Reports: Destinations("reports")
     object Revenue: Destinations("revenue")
     object Splash: Destinations("splash")
