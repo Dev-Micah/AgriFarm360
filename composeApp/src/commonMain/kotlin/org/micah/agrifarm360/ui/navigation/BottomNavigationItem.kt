@@ -1,4 +1,4 @@
-package org.micah.agrifarm360.core.navigation
+package org.micah.agrifarm360.ui.navigation
 
 import agrifarm360.composeapp.generated.resources.Res
 import agrifarm360.composeapp.generated.resources.dashboard

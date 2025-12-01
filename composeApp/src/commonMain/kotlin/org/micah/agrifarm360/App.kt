@@ -1,9 +1,8 @@
 package org.micah.agrifarm360
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.micah.agrifarm360.core.navigation.AppNavHost
+import org.micah.agrifarm360.ui.navigation.AppNavHost
 import org.micah.agrifarm360.features.tasks.data.local.TaskDatabase
 import org.micah.agrifarm360.ui.theme.AgriFarm360Theme
 

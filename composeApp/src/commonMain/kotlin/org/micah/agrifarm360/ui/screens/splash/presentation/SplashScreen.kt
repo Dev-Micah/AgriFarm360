@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
-import org.micah.agrifarm360.core.navigation.Destinations
+import org.micah.agrifarm360.ui.navigation.Destinations
 
 @Composable
 fun SplashScreen(

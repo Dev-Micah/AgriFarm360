@@ -1,4 +1,4 @@
-package org.micah.agrifarm360.core.navigation
+package org.micah.agrifarm360.ui.navigation
 
 sealed class Destinations(val route: String) {
     object Dashboard: Destinations("dashboard")

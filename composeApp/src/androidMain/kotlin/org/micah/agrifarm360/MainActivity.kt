@@ -7,10 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import org.micah.agrifarm360.core.navigation.AppNavHost
 import org.micah.agrifarm360.db.getDatabaseBuilder
 import org.micah.agrifarm360.features.tasks.data.local.getTaskDatabase
-import org.micah.agrifarm360.ui.theme.AgriFarm360Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

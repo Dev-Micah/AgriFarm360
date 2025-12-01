@@ -63,6 +63,9 @@ kotlin {
             implementation(libs.koin.compose.viewmodel)
             implementation("io.insert-koin:koin-compose:4.1.1")
 
+            //Time
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
+
 
 
         }
