@@ -29,6 +29,7 @@ import org.micah.agrifarm360.core.navigation.BottomNavigation
 import org.micah.agrifarm360.core.navigation.Destinations
 import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
+import org.micah.agrifarm360.features.tasks.presentation.TasksScreen
 import org.micah.agrifarm360.features.tasks.presentation.TasksSection
 import org.micah.agrifarm360.ui.screens.dashboard.presentation.DashboardScreen
 import org.micah.agrifarm360.ui.screens.expenses.presentation.ExpensesScreen
@@ -128,7 +129,7 @@ fun MainScreen(){
                         WorkersScreen()
                     }
                     composable(Destinations.Tasks.route) {
-                        TasksSection(
+                        TasksScreen(
                             navController = navController,
                             viewModel = viewModel
                         )
