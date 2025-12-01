@@ -4,14 +4,14 @@ package org.micah.agrifarm360.di
 import androidx.room.Room
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
-import org.micah.agrifarm360.features.tasks.data.local.TaskDatabase
+import org.micah.agrifarm360.data.local.Agrifarm360Database
 
 actual val platformModule = module {
-    single<TaskDatabase> {
+    single<Agrifarm360Database> {
         Room.databaseBuilder(
             context = androidContext(),
-            klass = TaskDatabase::class.java,
-            name = "task_database.db"
+            klass = Agrifarm360Database::class.java,
+            name = "agrifarm_database.db"
         )
             .fallbackToDestructiveMigration()
             .build()

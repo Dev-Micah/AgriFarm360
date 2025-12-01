@@ -7,8 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import org.micah.agrifarm360.data.local.getAgrifarm360Database
 import org.micah.agrifarm360.db.getDatabaseBuilder
-import org.micah.agrifarm360.features.tasks.data.local.getTaskDatabase
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             App(
-               database = getTaskDatabase(getDatabaseBuilder(this@MainActivity))
+               database = getAgrifarm360Database(getDatabaseBuilder(this@MainActivity))
             )
 
         }
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    val database = getTaskDatabase(getDatabaseBuilder(LocalContext.current))
+    val database = getAgrifarm360Database(getDatabaseBuilder(LocalContext.current))
     App(database)
 
 }

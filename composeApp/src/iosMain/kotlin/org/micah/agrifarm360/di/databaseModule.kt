@@ -2,16 +2,16 @@ package org.micah.agrifarm360.di
 
 import androidx.room.Room
 import org.koin.dsl.module
-import org.micah.agrifarm360.features.tasks.data.local.TaskDatabase
-import org.micah.agrifarm360.features.tasks.data.local.getTaskDatabase
+import org.micah.agrifarm360.data.local.Agrifarm360Database
+import org.micah.agrifarm360.data.local.getAgrifarm360Database
 import platform.Foundation.NSHomeDirectory
 
 actual val platformModule = module {
-    single<TaskDatabase> {
-        val dbFile = NSHomeDirectory() + "/task_database.db"
-        val builder = Room.databaseBuilder<TaskDatabase>(
+    single<Agrifarm360Database> {
+        val dbFile = NSHomeDirectory() + "/agrifarm_database.db"
+        val builder = Room.databaseBuilder<Agrifarm360Database>(
             name = dbFile,
         )
-        getTaskDatabase(builder)
+        getAgrifarm360Database(builder)
     }
 }

@@ -3,15 +3,15 @@ package org.micah.agrifarm360.db
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import kotlinx.cinterop.ExperimentalForeignApi
-import org.micah.agrifarm360.features.tasks.data.local.TaskDatabase
+import org.micah.agrifarm360.data.local.Agrifarm360Database
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 
 
-fun getDatabaseBuilder(): RoomDatabase.Builder<TaskDatabase> {
-    val dbFilePath = documentDirectory() + "/task_database.db"
-    return Room.databaseBuilder<TaskDatabase>(
+fun getDatabaseBuilder(): RoomDatabase.Builder<Agrifarm360Database> {
+    val dbFilePath = documentDirectory() + "/agrifarm_database.db"
+    return Room.databaseBuilder<Agrifarm360Database>(
         name = dbFilePath,
     )
 }
