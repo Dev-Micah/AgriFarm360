@@ -1,8 +1,9 @@
 package org.micah.agrifarm360.domain.models
 
 data class Worker(
-    val name: String,
-    val phoneNumber: Int,
+    val id: Int,
+    val fullName: String,
+    val phone: String,
     val role: String,
-    val attendance: String
+    val dailyWage: Double
 )
