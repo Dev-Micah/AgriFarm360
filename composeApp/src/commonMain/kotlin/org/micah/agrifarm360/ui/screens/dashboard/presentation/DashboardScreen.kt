@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
-import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
+import org.micah.agrifarm360.data.local.entities.TaskEntity
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 import org.micah.agrifarm360.features.tasks.presentation.TasksSection
 import kotlin.time.Clock

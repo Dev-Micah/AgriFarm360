@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
-import org.micah.agrifarm360.features.tasks.domain.repository.TaskRepository
+import org.micah.agrifarm360.data.local.entities.TaskEntity
+import org.micah.agrifarm360.domain.repository.TaskRepository
 
 class TaskViewModel (private val taskRepository: TaskRepository): ViewModel(){
 

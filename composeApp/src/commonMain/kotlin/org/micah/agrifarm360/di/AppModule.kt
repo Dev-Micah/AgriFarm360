@@ -5,8 +5,8 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import org.micah.agrifarm360.data.local.Agrifarm360Database
-import org.micah.agrifarm360.features.tasks.data.repository.TaskRepositoryImpl
-import org.micah.agrifarm360.features.tasks.domain.repository.TaskRepository
+import org.micah.agrifarm360.data.repository.TaskRepositoryImpl
+import org.micah.agrifarm360.domain.repository.TaskRepository
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 
 val taskDataSourceModule = module{

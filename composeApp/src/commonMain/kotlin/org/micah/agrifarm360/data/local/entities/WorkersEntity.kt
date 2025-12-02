@@ -1,4 +1,4 @@
-package org.micah.agrifarm360.data.local.Entities
+package org.micah.agrifarm360.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -7,10 +7,9 @@ import androidx.room.RoomDatabaseConstructor
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
-import org.micah.agrifarm360.data.local.Dao.WorkerDao
-import org.micah.agrifarm360.features.tasks.data.local.TaskDao
+import org.micah.agrifarm360.data.local.dao.TaskDao
 
-import org.micah.agrifarm360.features.tasks.data.local.TaskEntity
+import org.micah.agrifarm360.data.local.entities.TaskEntity
 
 @Database(entities = [TaskEntity::class], version = 2, exportSchema = false)
 @ConstructedBy(Agrifarm360DatabaseConstructor::class)
