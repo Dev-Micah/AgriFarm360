@@ -8,14 +8,16 @@ import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.micah.agrifarm360.data.local.dao.TaskDao
-
+import org.micah.agrifarm360.data.local.dao.WorkerDao
 import org.micah.agrifarm360.data.local.entities.TaskEntity
+import org.micah.agrifarm360.data.local.entities.WorkerEntity
 
-@Database(entities = [TaskEntity::class], version = 2, exportSchema = false)
+@Database(entities =
+    [TaskEntity::class , WorkerEntity::class], version = 2, exportSchema = false)
 @ConstructedBy(Agrifarm360DatabaseConstructor::class)
 abstract class Agrifarm360Database: RoomDatabase() {
     abstract fun taskDao(): TaskDao
-    //abstract fun workerDao(): WorkerDao
+    abstract fun workerDao(): WorkerDao
 //    abstract fun expenseDao(): ExpenseDao
 //    abstract fun revenueDao(): RevenueDao
 

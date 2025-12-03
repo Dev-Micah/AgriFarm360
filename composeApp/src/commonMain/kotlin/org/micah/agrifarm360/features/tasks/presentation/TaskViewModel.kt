@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -13,7 +14,7 @@ import org.micah.agrifarm360.domain.repository.TaskRepository
 class TaskViewModel (private val taskRepository: TaskRepository): ViewModel(){
 
     private val _uiState = MutableStateFlow(TaskUiState())
-    val uiState : StateFlow<TaskUiState> = _uiState
+    val uiState : StateFlow<TaskUiState> = _uiState.asStateFlow()
 
     init {
         loadTasks()
