@@ -1,16 +1,22 @@
 package org.micah.agrifarm360.features.tasks.presentation
 
+import agrifarm360.composeapp.generated.resources.Res
+import agrifarm360.composeapp.generated.resources.morevert
+import agrifarm360.composeapp.generated.resources.view_all
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -25,6 +31,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import org.micah.agrifarm360.ui.navigation.Destinations
 import org.micah.agrifarm360.data.local.entities.TaskEntity
@@ -57,8 +64,13 @@ fun TasksSection(
                 Text(
                     text = "View All",
                     color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Normal,
                     fontSize = 14.sp
+                )
+                Spacer(Modifier.size(4.dp))
+                Icon(
+                    painter = painterResource(Res.drawable.view_all),
+                    contentDescription = "View all"
                 )
             }
         }
@@ -109,10 +121,15 @@ fun TaskItem(
             containerColor = MaterialTheme.colorScheme.surface
         )
     ) {
-        Row {
+        Row (
+            modifier = modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ){
         Column(
             modifier = modifier
                 .fillMaxWidth()
+                .weight(1f)
                 .padding(vertical = 4.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
@@ -134,7 +151,10 @@ fun TaskItem(
         }
 
             IconButton(onClick = {}){
-
+                Icon(
+                    painter = painterResource(Res.drawable.morevert),
+                    contentDescription = "More"
+                )
             }
     }
 }
@@ -149,7 +169,8 @@ fun EmptyTasksScreen() {
         verticalArrangement = Arrangement.Center
     ){
         Text(
-            text = "No tasks scheduled"
+            text = "No tasks scheduled \n" +
+                    "Tap + to add"
         )
     }
 }

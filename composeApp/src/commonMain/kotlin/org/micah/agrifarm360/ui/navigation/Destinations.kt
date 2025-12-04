@@ -11,6 +11,7 @@ sealed class Destinations(val route: String) {
     object Revenue: Destinations("revenue")
     object Splash: Destinations("splash")
     object Workers: Destinations("workers")
+    object AddWorker: Destinations("add-workers")
     object Main: Destinations("main")
 
 }
