@@ -28,22 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
-
-
-data class Worker(
-    val name: String,
-    val phoneNumber: Int,
-    val presence: String,
-    val position: String
-)
-
-val dummyWorkers = listOf(
-    Worker("John Muchiri", 711223344, "Present", "Farm Manager"),
-    Worker("Brian Otieno", 722334455, "Absent", "Field Worker"),
-    Worker("Sila Nyanducha", 733445566, "Present", "Picker"),
-    Worker("Micah Nyabuto", 744556677, "Late", "Tractor Driver"),
-    Worker("Eunice Akinyi", 755667788, "Present", "Store Clerk")
-)
+import org.micah.agrifarm360.domain.models.Worker
 
 
 @Composable
@@ -78,7 +63,7 @@ fun WorkerItem(
                 .background(Color(0xFFE6F4EA)),
             contentAlignment = Alignment.Center
         ) {
-            val initials = worker.name
+            val initials = worker.fullName
                 .split(" ")
                 .filter { it.isNotBlank() }
                 .take(2)
@@ -97,12 +82,12 @@ fun WorkerItem(
 
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = worker.name,
+                text = worker.fullName,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 16.sp
             )
             Text(
-                text = worker.position,
+                text = worker.role,
                 color = Color(0xFF4CAF50),
                 fontSize = 14.sp
             )
