@@ -3,7 +3,6 @@ package org.micah.agrifarm360.features.tasks.presentation
 import agrifarm360.composeapp.generated.resources.Res
 import agrifarm360.composeapp.generated.resources.add
 import agrifarm360.composeapp.generated.resources.morevert
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
