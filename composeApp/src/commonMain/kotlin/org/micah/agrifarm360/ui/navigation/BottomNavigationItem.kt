@@ -3,6 +3,7 @@ package org.micah.agrifarm360.ui.navigation
 import agrifarm360.composeapp.generated.resources.Res
 import agrifarm360.composeapp.generated.resources.dashboard
 import agrifarm360.composeapp.generated.resources.expense
+import agrifarm360.composeapp.generated.resources.reports
 import agrifarm360.composeapp.generated.resources.revenue
 import agrifarm360.composeapp.generated.resources.workers
 import org.jetbrains.compose.resources.DrawableResource
@@ -32,12 +33,12 @@ enum class BottomNavigation(
         unselectedIcon = Res.drawable.expense,
         route = Destinations.Expenses.route
     ),
-//    Reports(
-//        label = "Reports",
-//        selectedIcon = Res.drawable.reports,
-//        unselectedIcon = Res.drawable.reports,
-//        route = Destinations.Reports.route
-//    ),
+   Reports(
+       label = "Reports",
+       selectedIcon = Res.drawable.reports,
+       unselectedIcon = Res.drawable.reports,
+       route = Destinations.Reports.route
+   ),
     Workers(
         label = "Workers",
         selectedIcon = Res.drawable.workers,
