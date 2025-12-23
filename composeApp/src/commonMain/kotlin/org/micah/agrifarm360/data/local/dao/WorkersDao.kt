@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import org.micah.agrifarm360.data.local.entities.WorkerEntity
 
@@ -13,6 +14,9 @@ interface WorkerDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(worker: WorkerEntity)
+
+    @Update
+    suspend fun  updateWorker(worker: WorkerEntity)
 
     @Delete
     suspend fun delete(worker: WorkerEntity)

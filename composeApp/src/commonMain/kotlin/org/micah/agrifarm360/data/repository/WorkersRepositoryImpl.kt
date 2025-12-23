@@ -13,6 +13,10 @@ class WorkersRepositoryImpl (private val workerDao: WorkerDao): WorkerRepository
        workerDao.insert(worker)
     }
 
+    override suspend fun updateWorker(worker: WorkerEntity) {
+        workerDao.updateWorker(worker)
+    }
+
     override fun getAllWorkers(): Flow<List<Worker>> {
         return workerDao.getAllWorkers().map{
             it.map { it.toDomain() }

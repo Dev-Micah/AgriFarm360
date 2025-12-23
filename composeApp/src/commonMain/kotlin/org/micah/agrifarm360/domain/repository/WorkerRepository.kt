@@ -6,6 +6,10 @@ import org.micah.agrifarm360.domain.models.Worker
 
 interface WorkerRepository {
     suspend fun addWorker(worker: WorkerEntity)
-    fun getAllWorkers(): Flow<List<Worker>>
+
+    suspend fun updateWorker(worker: WorkerEntity)
     suspend fun deleteWorker(worker: WorkerEntity)
+
+    fun getAllWorkers(): Flow<List<Worker>>
+
 }
