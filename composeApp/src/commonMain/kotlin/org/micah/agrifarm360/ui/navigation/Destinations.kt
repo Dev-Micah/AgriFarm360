@@ -1,17 +1,37 @@
 package org.micah.agrifarm360.ui.navigation
 
-sealed class Destinations(val route: String) {
-    object Dashboard: Destinations("dashboard")
-    object Expenses: Destinations("expenses")
-    object Onboarding: Destinations("onboarding")
-    object Profile: Destinations("profile")
+import kotlinx.serialization.Serializable
 
-    object Tasks: Destinations("tasks")
-    object Reports: Destinations("reports")
-    object Revenue: Destinations("revenue")
-    object Splash: Destinations("splash")
-    object Workers: Destinations("workers")
-    object AddWorker: Destinations("add-workers")
-    object Main: Destinations("main")
+@Serializable
+object Dashboard
 
-}
+@Serializable
+object Expenses
+
+@Serializable
+object Onboarding
+
+@Serializable
+object Profile
+
+@Serializable
+object Tasks
+
+@Serializable
+object Reports
+
+@Serializable
+object Revenue
+
+@Serializable
+object Splash
+
+@Serializable
+object Workers
+
+@Serializable
+object AddWorker
+
+@Serializable
+object Main
+
