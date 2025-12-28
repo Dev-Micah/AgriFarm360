@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.implementation
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -7,6 +8,8 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.room)
+    kotlin("plugin.serialization") version "1.9.0"
+
 }
 
 kotlin {
@@ -52,6 +55,8 @@ kotlin {
 
             //navigation
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.1")
+
+
 
             //Room
             implementation(libs.androidx.room.runtime)
