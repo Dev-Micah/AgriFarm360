@@ -10,11 +10,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.koinInject
 import org.micah.agrifarm360.ui.components.CustomButton
 import org.micah.agrifarm360.ui.components.CustomOutlinedTextField
 
@@ -22,12 +25,15 @@ import org.micah.agrifarm360.ui.components.CustomOutlinedTextField
 @Composable
 fun AddWorkerScreen(
     modifier: Modifier = Modifier,
-
+    viewModel: WorkerViewModel = koinInject()
 ){
     val workerName = remember { mutableStateOf("") }
     val workerPhone = remember { mutableStateOf("") }
     val workerRole= remember { mutableStateOf("") }
     val workerDailyWage= remember{mutableStateOf("")}
+
+    val uiState by viewModel.uiState.collectAsState()
+
     Scaffold (
         topBar = {
             TopAppBar(
