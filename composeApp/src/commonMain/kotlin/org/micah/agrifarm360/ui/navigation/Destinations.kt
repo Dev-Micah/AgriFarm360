@@ -34,4 +34,3 @@ object AddWorker
 
 @Serializable
 object Main
-

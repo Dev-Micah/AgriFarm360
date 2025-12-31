@@ -9,40 +9,39 @@ import agrifarm360.composeapp.generated.resources.workers
 import org.jetbrains.compose.resources.DrawableResource
 
 enum class BottomNavigation(
+    val route: Any,
     val label: String,
     val selectedIcon: DrawableResource,
     val unselectedIcon: DrawableResource,
-    val route: String
-
 ) {
     Dashboard(
+        route = org.micah.agrifarm360.ui.navigation.Dashboard,
         label = "Dashboard",
         selectedIcon = Res.drawable.dashboard,
         unselectedIcon = Res.drawable.dashboard,
-        route = Destinations.Dashboard.route
     ),
     Revenue(
+        route = org.micah.agrifarm360.ui.navigation.Revenue,
         label = "Revenue",
         selectedIcon = Res.drawable.revenue,
         unselectedIcon = Res.drawable.revenue,
-        route = Destinations.Revenue.route
     ),
     Expense(
+        route = org.micah.agrifarm360.ui.navigation.Expenses,
         label = "Expenses",
         selectedIcon = Res.drawable.expense,
         unselectedIcon = Res.drawable.expense,
-        route = Destinations.Expenses.route
     ),
-   Reports(
-       label = "Reports",
-       selectedIcon = Res.drawable.reports,
-       unselectedIcon = Res.drawable.reports,
-       route = Destinations.Reports.route
-   ),
+    Reports(
+        route = org.micah.agrifarm360.ui.navigation.Reports,
+        label = "Reports",
+        selectedIcon = Res.drawable.reports,
+        unselectedIcon = Res.drawable.reports,
+    ),
     Workers(
+        route = org.micah.agrifarm360.ui.navigation.Workers,
         label = "Workers",
         selectedIcon = Res.drawable.workers,
         unselectedIcon = Res.drawable.workers,
-        route = Destinations.Workers.route
     )
 }

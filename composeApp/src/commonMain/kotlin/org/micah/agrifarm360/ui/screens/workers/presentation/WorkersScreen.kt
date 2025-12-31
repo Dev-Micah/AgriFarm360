@@ -35,12 +35,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.painterResource
 import org.micah.agrifarm360.ui.components.WorkerItemShimmer
+import org.micah.agrifarm360.ui.navigation.AddWorker
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WorkersScreen(){
+fun WorkersScreen(
+    navController : NavController
+){
     var selectedFilter by remember { mutableStateOf("All Workers") }
     val workerPresence = listOf("All Workers","Attendance")
     Scaffold(
@@ -59,7 +64,10 @@ fun WorkersScreen(){
                         )
                     },
                     actions = {
-                        IconButton(onClick = {}) {
+                        IconButton(onClick = {
+                            navController.navigate(AddWorker)
+
+                        }) {
                             Icon(
                                 painter = painterResource(Res.drawable.addworker),
                                 contentDescription = "Add worker",

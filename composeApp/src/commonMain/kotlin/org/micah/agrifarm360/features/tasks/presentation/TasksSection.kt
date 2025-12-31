@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
-import org.micah.agrifarm360.ui.navigation.Destinations
+import org.micah.agrifarm360.ui.navigation.Tasks
 import org.micah.agrifarm360.data.local.entities.TaskEntity
 import org.micah.agrifarm360.ui.components.WorkerItemShimmer
 
@@ -60,7 +60,7 @@ fun TasksSection(
                     fontSize = 18.sp
                 )
             )
-            TextButton(onClick = {navController.navigate(Destinations.Tasks.route)}) {
+            TextButton(onClick = {navController.navigate(Tasks)}) {
                 Text(
                     text = "View All",
                     color = MaterialTheme.colorScheme.primary,

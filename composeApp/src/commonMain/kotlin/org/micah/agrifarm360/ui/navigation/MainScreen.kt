@@ -1,3 +1,5 @@
+package org.micah.agrifarm360.ui.navigation
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -19,20 +21,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavDestination.Companion.hasRoute
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
-import org.micah.agrifarm360.ui.navigation.BottomNavigation
-import org.micah.agrifarm360.ui.navigation.Destinations
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 import org.micah.agrifarm360.features.tasks.presentation.TasksScreen
 import org.micah.agrifarm360.ui.screens.dashboard.presentation.DashboardScreen
 import org.micah.agrifarm360.ui.screens.expenses.presentation.ExpensesScreen
 import org.micah.agrifarm360.ui.screens.reports.presentation.ReportsScreen
 import org.micah.agrifarm360.ui.screens.revenue.presentation.RevenueScreen
+import org.micah.agrifarm360.ui.screens.workers.presentation.AddWorkerScreen
 import org.micah.agrifarm360.ui.screens.workers.presentation.WorkersScreen
 
 
@@ -41,12 +44,13 @@ import org.micah.agrifarm360.ui.screens.workers.presentation.WorkersScreen
 fun MainScreen(){
     val navController= rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route.orEmpty()
+    val destination = navBackStackEntry?.destination
 
-    val showBottomNavigation = currentRoute !in listOf(
-        Destinations.Splash.route,
-        Destinations.Tasks.route
-    )
+    val showBottomNavigation = destination?.let {
+        !it.hasRoute<Tasks>()
+        !it.hasRoute<AddWorker>()
+    } ?: true
+
     val viewModel : TaskViewModel = koinViewModel<TaskViewModel>()
 
             Scaffold(
@@ -62,7 +66,7 @@ fun MainScreen(){
                             ) {
                                 BottomNavigation.entries.forEach { navigationItem ->
 
-                                    val isSelected = currentRoute == navigationItem.route
+                                    val isSelected = destination?.hasRoute(navigationItem.route::class) == true
 
                                     NavigationBarItem(
                                         selected = isSelected,
@@ -82,8 +86,14 @@ fun MainScreen(){
                                             )
                                         },
                                         onClick = {
-                                            if (currentRoute != navigationItem.route) {
-                                                navController.navigate(navigationItem.route)
+                                            if (!isSelected) {
+                                                navController.navigate(navigationItem.route) {
+                                                    popUpTo(navController.graph.findStartDestination().id) {
+                                                        saveState = true
+                                                    }
+                                                    launchSingleTop = true
+                                                    restoreState = true
+                                                }
                                             }
                                         },
                                         colors = NavigationBarItemDefaults.colors(
@@ -104,29 +114,34 @@ fun MainScreen(){
                 }
             ) {
                 NavHost(
-                    startDestination = Destinations.Dashboard.route,
+                    startDestination = Dashboard,
                     navController = navController
                 ) {
 
-                    composable(Destinations.Dashboard.route) {
+                    composable<Dashboard> {
                         DashboardScreen(
                             viewModel = viewModel,
                             navController = navController
                         )
                     }
-                    composable(Destinations.Revenue.route) {
+                    composable<Revenue> {
                         RevenueScreen()
                     }
-                    composable(Destinations.Expenses.route) {
+                    composable<Expenses> {
                         ExpensesScreen()
                     }
-                    composable(Destinations.Reports.route) {
+                    composable<Reports> {
                         ReportsScreen()
                     }
-                    composable(Destinations.Workers.route) {
-                        WorkersScreen()
+                    composable<Workers> {
+                        WorkersScreen(
+                            navController = navController
+                        )
                     }
-                    composable(Destinations.Tasks.route) {
+                    composable<AddWorker> {
+                        AddWorkerScreen()
+                    }
+                    composable<Tasks> {
                         TasksScreen(
                             navController = navController,
                             viewModel = viewModel

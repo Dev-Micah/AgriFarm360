@@ -1,6 +1,5 @@
 package org.micah.agrifarm360.ui.navigation
 
-import MainScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -16,14 +15,13 @@ fun AppNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = Destinations.Splash.route
+        startDestination = Splash
     ) {
-        composable (Destinations.Splash.route){
+        composable<Splash> {
             SplashScreen(navController = navController)
         }
-        composable (Destinations.Main.route){
+        composable<Main> {
             MainScreen()
         }
-
     }
 }

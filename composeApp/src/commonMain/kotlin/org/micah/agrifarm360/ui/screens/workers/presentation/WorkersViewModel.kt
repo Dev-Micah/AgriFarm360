@@ -13,7 +13,7 @@ import org.micah.agrifarm360.domain.models.Worker
 import org.micah.agrifarm360.domain.repository.WorkerRepository
 
 
-class WorkerViewModel (private val repository: WorkerRepository): ViewModel() {
+class WorkerViewModel (private val workerRepository: WorkerRepository): ViewModel() {
     private val _uiState = MutableStateFlow(WorkersUiState())
     val uiState: StateFlow<WorkersUiState> = _uiState.asStateFlow()
 
@@ -30,7 +30,7 @@ class WorkerViewModel (private val repository: WorkerRepository): ViewModel() {
                     role = worker.role,
                     dailyWage = worker.dailyWage
                 )
-                repository.addWorker(workerEntity)
+                workerRepository.addWorker(workerEntity)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(error = e.message)
             }
@@ -39,7 +39,7 @@ class WorkerViewModel (private val repository: WorkerRepository): ViewModel() {
 
     fun loadWorkers(){
         _uiState.value =_uiState.value.copy(isLoading = true)
-        repository.getAllWorkers()
+        workerRepository.getAllWorkers()
             .onEach { workers ->
                 _uiState.value= uiState.value.copy(
                     workers = workers,
