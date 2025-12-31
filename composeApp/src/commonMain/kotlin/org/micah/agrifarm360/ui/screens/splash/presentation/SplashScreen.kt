@@ -16,7 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
-import org.micah.agrifarm360.ui.navigation.Destinations
+import org.micah.agrifarm360.ui.navigation.Main
+import org.micah.agrifarm360.ui.navigation.Splash
 
 @Composable
 fun SplashScreen(
@@ -24,8 +25,8 @@ fun SplashScreen(
 ){
     LaunchedEffect(Unit) {
         delay(2500)
-        navController.navigate(Destinations.Main.route){
-            popUpTo(Destinations.Splash.route){
+        navController.navigate(Main){
+            popUpTo(Splash){
                 inclusive =true
             }
         }
@@ -44,4 +45,3 @@ fun SplashScreen(
         }
 
 }
-//0xFF25D366
