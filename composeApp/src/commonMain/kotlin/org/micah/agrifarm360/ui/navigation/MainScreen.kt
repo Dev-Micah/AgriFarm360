@@ -36,6 +36,7 @@ import org.micah.agrifarm360.ui.screens.expenses.presentation.ExpensesScreen
 import org.micah.agrifarm360.ui.screens.reports.presentation.ReportsScreen
 import org.micah.agrifarm360.ui.screens.revenue.presentation.RevenueScreen
 import org.micah.agrifarm360.ui.screens.workers.presentation.AddWorkerScreen
+import org.micah.agrifarm360.ui.screens.workers.presentation.WorkerViewModel
 import org.micah.agrifarm360.ui.screens.workers.presentation.WorkersScreen
 
 
@@ -52,6 +53,8 @@ fun MainScreen(){
     } ?: true
 
     val viewModel : TaskViewModel = koinViewModel<TaskViewModel>()
+    val workerViewModel : WorkerViewModel = koinViewModel<WorkerViewModel>()
+
 
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
@@ -139,7 +142,10 @@ fun MainScreen(){
                         )
                     }
                     composable<AddWorker> {
-                        AddWorkerScreen()
+                        AddWorkerScreen(
+                            navController = navController,
+                            viewModel = workerViewModel
+                        )
                     }
                     composable<Tasks> {
                         TasksScreen(

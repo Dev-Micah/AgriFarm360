@@ -91,7 +91,6 @@ fun TasksSection(
             else -> {
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth(),
-                    //contentPadding = PaddingValues(16.dp),
                 ) {
                     items(uiState.tasks.take(5)) { task ->
                         TaskItem(task = task)
