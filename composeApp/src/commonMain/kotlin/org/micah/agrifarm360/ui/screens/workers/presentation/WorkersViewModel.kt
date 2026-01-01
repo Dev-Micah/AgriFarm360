@@ -23,6 +23,7 @@ class WorkerViewModel (private val workerRepository: WorkerRepository): ViewMode
 
     fun registerWorker(worker: Worker) {
         viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(isLoading = true)
             try {
                 val workerEntity = WorkerEntity(
                     fullName = worker.fullName,
@@ -31,10 +32,21 @@ class WorkerViewModel (private val workerRepository: WorkerRepository): ViewMode
                     dailyWage = worker.dailyWage
                 )
                 workerRepository.addWorker(workerEntity)
+                _uiState.value = _uiState.value.copy(
+                    isSuccess = true,
+                    isLoading = false
+                )
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message)
+                _uiState.value = _uiState.value.copy(
+                    error = e.message,
+                    isLoading = false
+                )
             }
         }
+    }
+
+    fun resetSuccess() {
+        _uiState.value = _uiState.value.copy(isSuccess = false)
     }
 
     fun loadWorkers(){
@@ -55,5 +67,6 @@ class WorkerViewModel (private val workerRepository: WorkerRepository): ViewMode
 data class WorkersUiState(
     val isLoading: Boolean = false,
     val workers: List<Worker> = emptyList(),
-    val error: String? = null
+    val error: String? = null,
+    val isSuccess: Boolean = false
 )
