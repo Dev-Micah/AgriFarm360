@@ -25,6 +25,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,16 +39,21 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.koinInject
 import org.micah.agrifarm360.ui.components.WorkerItemShimmer
 import org.micah.agrifarm360.ui.navigation.AddWorker
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WorkersScreen(
-    navController : NavController
+    navController : NavController,
+    viewModel: WorkerViewModel = koinInject()
 ){
+    
+    val uiState by viewModel.uiState.collectAsState()
     var selectedFilter by remember { mutableStateOf("All Workers") }
     val workerPresence = listOf("All Workers","Attendance")
+
     Scaffold(
         topBar = {
             Column {
@@ -113,13 +119,29 @@ fun WorkersScreen(
                 }
             }
         }
-    ) {
+    ) {innerpadding->
+
         Column(
-            modifier = Modifier.padding(top = 200.dp)
-        ) {
-            repeat(7) {
-                WorkerItemShimmer()
-                //WorkersListScreen(dummyWorkers)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerpadding)
+        ){
+            when {
+                uiState.isLoading -> {
+                    repeat(8) { WorkerItemShimmer() }
+                }
+
+                uiState.error != null -> {
+                    Text("Error loading workers: ${uiState.error}")
+                }
+
+                uiState.workers.isEmpty() -> {
+                    EmptyWorkersScreen()
+                }
+
+                else -> {
+                    WorkersListScreen(workers = uiState.workers)
+                }
             }
         }
     }
