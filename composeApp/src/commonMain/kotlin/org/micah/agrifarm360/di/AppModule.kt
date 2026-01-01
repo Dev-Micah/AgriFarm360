@@ -19,7 +19,6 @@ val taskDataSourceModule = module{
     single<TaskRepository>{ TaskRepositoryImpl(taskDao = get ()) }
     single<WorkerRepository>{ WorkersRepositoryImpl(workerDao = get ()) }
 
-    //viewModelOf(::TaskViewModel)
     viewModel { TaskViewModel(taskRepository = get()) }
     viewModel { WorkerViewModel(workerRepository = get()) }
 }
