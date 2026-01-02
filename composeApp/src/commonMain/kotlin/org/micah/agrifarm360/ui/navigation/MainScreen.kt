@@ -48,8 +48,7 @@ fun MainScreen(){
     val destination = navBackStackEntry?.destination
 
     val showBottomNavigation = destination?.let {
-        !it.hasRoute<Tasks>()
-        !it.hasRoute<AddWorker>()
+        !it.hasRoute<Tasks>() && !it.hasRoute<AddWorker>()
     } ?: true
 
     val viewModel : TaskViewModel = koinViewModel<TaskViewModel>()
