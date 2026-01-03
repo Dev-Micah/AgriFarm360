@@ -2,6 +2,8 @@ package org.micah.agrifarm360.features.tasks.presentation
 
 import agrifarm360.composeapp.generated.resources.Res
 import agrifarm360.composeapp.generated.resources.add
+import agrifarm360.composeapp.generated.resources.arrow_back_24px
+import agrifarm360.composeapp.generated.resources.arrowback
 import agrifarm360.composeapp.generated.resources.morevert
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -62,23 +64,21 @@ fun  TasksScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text("Tasks")
+                },
+
+                navigationIcon = {
+                    IconButton(onClick = {navController.popBackStack()}){
+                        Icon(
+                            painter = painterResource(Res.drawable.arrow_back_24px),
+                            contentDescription = "Back"
+                        )
+
+                    }
                 }
             )
+
         },
 
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {},
-                modifier = Modifier.padding(16.dp),
-                containerColor = MaterialTheme.colorScheme.primary
-                ){
-                Icon(
-                    painter = painterResource(Res.drawable.add),
-                    contentDescription = "More",
-                    tint = MaterialTheme.colorScheme.onPrimary
-                )
-            }
-        }
 
     ){innerpadding->
 
@@ -165,63 +165,3 @@ fun TaskScreenItem(
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AddTaskAlertDialog(
-    showDialog: Boolean,
-    onCancel: () -> Unit,
-    onSaveTask: (String) -> Unit
-) {
-    var taskText by remember { mutableStateOf("") }
-    if (showDialog) {
-        AlertDialog(
-            onDismissRequest = onCancel,
-            title = { Text("Schedule a NewTask") },
-            text = {
-                OutlinedTextField(
-                    value = taskText,
-                    onValueChange = { taskText =it},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(150.dp),
-                    placeholder = {
-                        Text(
-                            "e.g Water the crops",
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    },
-                    textStyle = TextStyle(
-                        fontSize = 14.sp
-                    ),
-                    shape = RoundedCornerShape(12.dp),
-                    maxLines = 4,
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                        disabledContainerColor = Color.Transparent,
-                        focusedBorderColor = Color.LightGray,
-                        unfocusedBorderColor = Color.LightGray,
-                        disabledBorderColor = Color.Transparent
-                    ),
-                )
-
-            },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        onSaveTask(taskText)
-
-                    }
-                ) {
-                    Text("Save")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = onCancel) {
-                    Text("Cancel")
-                }
-            }
-        )
-    }
-
-}
