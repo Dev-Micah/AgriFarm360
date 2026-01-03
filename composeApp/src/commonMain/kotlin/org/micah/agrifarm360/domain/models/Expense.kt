@@ -1,6 +1,7 @@
 package org.micah.agrifarm360.domain.models
 
 data class Expense(
+    val id: Int,
     val name: String,
     val amount: Double,
     val date: Long,
