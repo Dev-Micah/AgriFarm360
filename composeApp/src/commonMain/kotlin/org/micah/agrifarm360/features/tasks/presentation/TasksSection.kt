@@ -36,6 +36,7 @@ import org.koin.compose.koinInject
 import org.micah.agrifarm360.ui.navigation.Tasks
 import org.micah.agrifarm360.data.local.entities.TaskEntity
 import org.micah.agrifarm360.ui.components.WorkerItemShimmer
+import org.micah.agrifarm360.utils.timestampToDate
 
 @Composable
 fun TasksSection(
@@ -141,7 +142,7 @@ fun TaskItem(
                 )
             )
             Text(
-                text = task.createdAt,
+                text = task.createdAt.timestampToDate(),
                 style = MaterialTheme.typography.bodySmall.copy(
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                     fontSize = 13.sp

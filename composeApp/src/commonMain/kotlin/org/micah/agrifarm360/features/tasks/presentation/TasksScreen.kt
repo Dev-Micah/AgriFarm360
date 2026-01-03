@@ -46,6 +46,9 @@ import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import org.micah.agrifarm360.data.local.entities.TaskEntity
 import org.micah.agrifarm360.ui.components.WorkerItemShimmer
+import org.micah.agrifarm360.utils.timestampToDate
+import org.micah.agrifarm360.utils.timestampToDate
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -141,7 +144,7 @@ fun TaskScreenItem(
                     )
                 )
                 Text(
-                    text = task.createdAt,
+                    text = task.createdAt.timestampToDate(),
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                         fontSize = 13.sp

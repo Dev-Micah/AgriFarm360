@@ -41,10 +41,9 @@ import org.koin.compose.koinInject
 import org.micah.agrifarm360.data.local.entities.TaskEntity
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 import org.micah.agrifarm360.features.tasks.presentation.TasksSection
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
+import org.micah.agrifarm360.utils.getCurrentTimestamp
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalTime::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(
     navController: NavController,
@@ -127,7 +126,7 @@ fun DashboardScreen(
                     val task = TaskEntity(
                         id = 0,
                         name = name,
-                        createdAt = Clock.System.now().toString(),
+                        createdAt = getCurrentTimestamp(),
                     )
                     showDialog = false
                     viewModel.addTaskEvent(task)

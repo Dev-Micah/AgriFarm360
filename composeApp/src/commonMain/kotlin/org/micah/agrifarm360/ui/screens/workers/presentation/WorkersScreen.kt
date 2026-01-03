@@ -128,7 +128,7 @@ fun WorkersScreen(
         ){
             when {
                 uiState.isLoading -> {
-                    repeat(8) { WorkerItemShimmer() }
+                    WorkerItemShimmer()
                 }
 
                 uiState.error != null -> {
