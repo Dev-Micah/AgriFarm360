@@ -1,17 +1,14 @@
 package org.micah.agrifarm360.utils
 
-
+import kotlinx.datetime.Instant
 import kotlinx.datetime.Month
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import kotlin.time.ExperimentalTime
-import kotlin.time.Instant
-
+import kotlin.time.Clock
 
 /**
  * Timestamp -> Date (e.g. "7 October 2021")
  */
-@OptIn(ExperimentalTime::class)
 fun Long.timestampToDate(): String {
     return try {
         val instant = Instant.fromEpochMilliseconds(this)
@@ -26,7 +23,6 @@ fun Long.timestampToDate(): String {
 /**
  * Timestamp -> Date & Time (e.g. "Oct 7, 2021 9:00 AM")
  */
-@OptIn(ExperimentalTime::class)
 fun Long.timestampToDateTime(): String {
     return try {
         val instant = Instant.fromEpochMilliseconds(this)
@@ -77,9 +73,7 @@ private fun monthShort(month: Month): String = when (month) {
     Month.DECEMBER -> "Dec"
 }
 
-//Usage
-
 /**
-val formatted = task.timestamp.timestampToDate()
-val full = task.timestamp.timestampToDateTime()
-*/
+ * Gets the current system time in milliseconds.
+ */
+fun getCurrentTimestamp(): Long = Clock.System.now().toEpochMilliseconds()
