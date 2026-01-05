@@ -7,6 +7,7 @@ import androidx.room.RoomDatabaseConstructor
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import org.micah.agrifarm360.data.local.dao.ExpensesDao
 import org.micah.agrifarm360.data.local.dao.TaskDao
 import org.micah.agrifarm360.data.local.dao.WorkerDao
 import org.micah.agrifarm360.data.local.entities.TaskEntity
@@ -18,7 +19,7 @@ import org.micah.agrifarm360.data.local.entities.WorkerEntity
 abstract class Agrifarm360Database: RoomDatabase() {
     abstract fun taskDao(): TaskDao
     abstract fun workerDao(): WorkerDao
-//    abstract fun expenseDao(): ExpenseDao
+    abstract fun expensesDao(): ExpensesDao
 //    abstract fun revenueDao(): RevenueDao
 
 }

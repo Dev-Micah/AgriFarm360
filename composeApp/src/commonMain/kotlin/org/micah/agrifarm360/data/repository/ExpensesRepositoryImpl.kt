@@ -3,6 +3,7 @@ package org.micah.agrifarm360.data.repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.micah.agrifarm360.data.local.dao.ExpensesDao
+import org.micah.agrifarm360.data.local.entities.ExpenseEntity
 import org.micah.agrifarm360.data.mappers.toDomain
 import org.micah.agrifarm360.data.mappers.toEntity
 import org.micah.agrifarm360.domain.models.Expense
@@ -18,7 +19,7 @@ class ExpensesRepositoryImpl(
         }
     }
 
-    override suspend fun addExpense(expense: Expense) {
+    override suspend fun addExpense(expense: ExpenseEntity) {
         expensesDao.insertExpense(expense.toEntity())
     }
 
