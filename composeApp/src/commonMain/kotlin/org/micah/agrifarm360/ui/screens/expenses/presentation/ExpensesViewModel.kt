@@ -73,3 +73,8 @@ data class ExpensesUiState(
     val error: String? = null,
     val isSuccess: Boolean = false
 )
+
+/*
+* AddExpense screen
+*All expenses logic
+* */
