@@ -23,25 +23,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.micah.agrifarm360.domain.models.Expense
+import org.micah.agrifarm360.utils.timestampToDate
+import org.micah.agrifarm360.utils.timestampToDateTime
 
-data class Expenses(
-    val name: String,
-    val amount: Double,
-    val category: String,
-    val date: String,
-    val description: String
-)
-
-val dummyExpenses = listOf(
-    Expenses(
-        "Allowances", 35000.8,
-        "Salary", "12 Oct 2025",
-        "Paid workers Allowances"
-    )
-)
 
 @Composable
-fun ExpensesListScreen(expenses: List<Expenses>) {
+fun ExpensesListScreen(expenses: List<Expense>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(expenses) { expense ->
             ExpenseItem(
@@ -52,7 +40,7 @@ fun ExpensesListScreen(expenses: List<Expenses>) {
 }
 
 @Composable
-fun ExpenseItem(expense: Expenses) {
+fun ExpenseItem(expense: Expense) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -112,7 +100,7 @@ fun ExpenseItem(expense: Expenses) {
                 fontSize = 16.sp
             )
             Text(
-                text = expense.date,
+                text = expense.date.timestampToDateTime(),
                 color = Color(0xFF6B7280),
                 fontSize = 14.sp
             )

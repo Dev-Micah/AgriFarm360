@@ -101,7 +101,7 @@ fun DashboardScreen(
                 Icon(
                     painter = painterResource(Res.drawable.add),
                     contentDescription = "Add Task",
-                    tint = Color.White
+                    tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
         }

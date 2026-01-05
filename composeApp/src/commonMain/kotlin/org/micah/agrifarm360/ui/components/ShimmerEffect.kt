@@ -58,7 +58,7 @@ fun Modifier.shimmerEffect(): Modifier {
 
 
 @Composable
-fun WorkerItemShimmer() {
+fun ItemShimmer() {
     Row(
         modifier = Modifier
             .fillMaxWidth()

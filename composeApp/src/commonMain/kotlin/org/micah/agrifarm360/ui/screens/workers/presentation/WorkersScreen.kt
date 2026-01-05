@@ -37,10 +37,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
-import org.micah.agrifarm360.ui.components.WorkerItemShimmer
+import org.micah.agrifarm360.ui.components.ItemShimmer
 import org.micah.agrifarm360.ui.navigation.AddWorker
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -128,7 +127,7 @@ fun WorkersScreen(
         ){
             when {
                 uiState.isLoading -> {
-                    WorkerItemShimmer()
+                    ItemShimmer()
                 }
 
                 uiState.error != null -> {
