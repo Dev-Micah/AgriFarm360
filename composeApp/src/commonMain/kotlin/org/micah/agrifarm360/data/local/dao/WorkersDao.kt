@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import org.micah.agrifarm360.data.local.entities.WorkerEntity
+import org.micah.agrifarm360.domain.models.Worker
 
 @Dao
 interface WorkerDao {
@@ -16,7 +17,7 @@ interface WorkerDao {
     suspend fun insert(worker: WorkerEntity)
 
     @Update
-    suspend fun  updateWorker(worker: WorkerEntity)
+    suspend fun  updateWorker(worker: Worker)
 
     @Delete
     suspend fun delete(worker: WorkerEntity)
