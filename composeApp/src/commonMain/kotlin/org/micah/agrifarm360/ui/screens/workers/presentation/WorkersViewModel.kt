@@ -49,6 +49,23 @@ class WorkerViewModel (private val workerRepository: WorkerRepository): ViewMode
         _uiState.value = _uiState.value.copy(isSuccess = false)
     }
 
+    fun updateWorker(worker: Worker) {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(isLoading = true)
+            try {
+                workerRepository.updateWorker(worker)
+                _uiState.value = _uiState.value.copy(
+                    isSuccess = true,
+                    isLoading = false
+                )
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    error = e.message,
+                    isLoading = false
+                )
+            }
+        }
+    }
     fun loadWorkers(){
         _uiState.value =_uiState.value.copy(isLoading = true)
         workerRepository.getAllWorkers()
