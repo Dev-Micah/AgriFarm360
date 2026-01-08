@@ -13,7 +13,7 @@ class WorkersRepositoryImpl (private val workerDao: WorkerDao): WorkerRepository
        workerDao.insert(worker)
     }
 
-    override suspend fun updateWorker(worker: WorkerEntity) {
+    override suspend fun updateWorker(worker: Worker) {
         workerDao.updateWorker(worker)
     }
 
