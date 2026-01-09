@@ -17,7 +17,7 @@ interface WorkerDao {
     suspend fun insert(worker: WorkerEntity)
 
     @Update
-    suspend fun  updateWorker(worker: Worker)
+    suspend fun  updateWorker(worker: WorkerEntity)
 
     @Delete
     suspend fun delete(worker: WorkerEntity)

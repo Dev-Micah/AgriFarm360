@@ -169,8 +169,10 @@ fun EmptyTasksScreen() {
         verticalArrangement = Arrangement.Center
     ){
         Text(
-            text = "No tasks scheduled \n" +
-                    "Tap + to add"
+            text = "No tasks scheduled"
+        )
+        Text(
+            text = "Tap the + add"
         )
     }
 }

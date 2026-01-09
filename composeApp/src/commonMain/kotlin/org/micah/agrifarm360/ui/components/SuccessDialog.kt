@@ -66,7 +66,7 @@ fun SuccessDialog() {
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 Text(
-                    text = "Success!",
+                    text = "Added Successfully!",
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp

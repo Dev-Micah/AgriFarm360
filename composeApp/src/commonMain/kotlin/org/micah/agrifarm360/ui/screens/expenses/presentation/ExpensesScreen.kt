@@ -26,9 +26,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.micah.agrifarm360.ui.components.ItemShimmer
+import org.micah.agrifarm360.ui.navigation.AddExpense
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +38,6 @@ fun ExpensesScreen(
     navController: NavController,
     viewModel: ExpensesViewModel = koinViewModel()
 ){
-
     val uiState by viewModel.uiState.collectAsState()
     Scaffold (
         topBar = {
@@ -87,7 +88,7 @@ fun ExpensesScreen(
         },
         floatingActionButton = {
            FloatingActionButton(
-               onClick = {},
+               onClick = {navController.navigate(AddExpense)},
                modifier = Modifier.padding(bottom = 80.dp),
                containerColor = MaterialTheme.colorScheme.primary
                 ){

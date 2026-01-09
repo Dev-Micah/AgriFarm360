@@ -32,7 +32,9 @@ import org.koin.compose.viewmodel.koinViewModel
 import org.micah.agrifarm360.features.tasks.presentation.TaskViewModel
 import org.micah.agrifarm360.features.tasks.presentation.TasksScreen
 import org.micah.agrifarm360.ui.screens.dashboard.presentation.DashboardScreen
+import org.micah.agrifarm360.ui.screens.expenses.presentation.AddExpenseScreen
 import org.micah.agrifarm360.ui.screens.expenses.presentation.ExpensesScreen
+import org.micah.agrifarm360.ui.screens.expenses.presentation.ExpensesViewModel
 import org.micah.agrifarm360.ui.screens.reports.presentation.ReportsScreen
 import org.micah.agrifarm360.ui.screens.revenue.presentation.RevenueScreen
 import org.micah.agrifarm360.ui.screens.workers.presentation.AddWorkerScreen
@@ -48,11 +50,12 @@ fun MainScreen(){
     val destination = navBackStackEntry?.destination
 
     val showBottomNavigation = destination?.let {
-        !it.hasRoute<Tasks>() && !it.hasRoute<AddWorker>()
+        !it.hasRoute<Tasks>() && !it.hasRoute<AddWorker>() && !it.hasRoute<AddExpense>()
     } ?: true
 
     val viewModel : TaskViewModel = koinViewModel<TaskViewModel>()
     val workerViewModel : WorkerViewModel = koinViewModel<WorkerViewModel>()
+    val expenseViewModel : ExpensesViewModel= koinViewModel<ExpensesViewModel>()
 
 
             Scaffold(
@@ -130,7 +133,10 @@ fun MainScreen(){
                         RevenueScreen()
                     }
                     composable<Expenses> {
-                        ExpensesScreen()
+                        ExpensesScreen(
+                            navController = navController,
+                            viewModel = expenseViewModel
+                        )
                     }
                     composable<Reports> {
                         ReportsScreen()
@@ -144,6 +150,12 @@ fun MainScreen(){
                         AddWorkerScreen(
                             navController = navController,
                             viewModel = workerViewModel
+                        )
+                    }
+                    composable<AddExpense> {
+                        AddExpenseScreen(
+                            navController = navController,
+                            viewModel = expenseViewModel
                         )
                     }
                     composable<Tasks> {

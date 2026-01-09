@@ -31,6 +31,8 @@ object Workers
 
 @Serializable
 object AddWorker
+@Serializable
+object AddExpense
 
 @Serializable
 object Main

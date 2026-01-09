@@ -32,7 +32,7 @@ import androidx.navigation.NavController
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import org.micah.agrifarm360.data.local.entities.TaskEntity
-import org.micah.agrifarm360.ui.components.WorkerItemShimmer
+import org.micah.agrifarm360.ui.components.ItemShimmer
 import org.micah.agrifarm360.utils.timestampToDate
 
 
@@ -68,7 +68,7 @@ fun  TasksScreen(
 
         when {
             uiState.isLoading -> {
-                repeat(3) { WorkerItemShimmer() }
+                repeat(3) { ItemShimmer() }
             }
 
             uiState.error != null -> {
