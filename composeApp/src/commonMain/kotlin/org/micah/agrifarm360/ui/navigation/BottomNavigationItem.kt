@@ -32,12 +32,12 @@ enum class BottomNavigation(
         selectedIcon = Res.drawable.expense,
         unselectedIcon = Res.drawable.expense,
     ),
-    Reports(
-        route = org.micah.agrifarm360.ui.navigation.Reports,
-        label = "Reports",
-        selectedIcon = Res.drawable.reports,
-        unselectedIcon = Res.drawable.reports,
-    ),
+//    Reports(
+//        route = org.micah.agrifarm360.ui.navigation.Reports,
+//        label = "Reports",
+//        selectedIcon = Res.drawable.reports,
+//        unselectedIcon = Res.drawable.reports,
+//    ),
     Workers(
         route = org.micah.agrifarm360.ui.navigation.Workers,
         label = "Workers",
