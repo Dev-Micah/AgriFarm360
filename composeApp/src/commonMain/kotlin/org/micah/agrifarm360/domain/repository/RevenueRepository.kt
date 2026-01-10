@@ -4,6 +4,15 @@ import kotlinx.coroutines.flow.Flow
 import org.micah.agrifarm360.domain.models.Revenue
 
 interface RevenueRepository{
-    suspend fun getAllRevenue(): Flow<List<Revenue>>
+
+    fun getAllRevenue(): Flow<List<Revenue>>
+
+    suspend fun addRevenue(revenue: Revenue)
+
+    suspend fun updateRevenue(revenue: Revenue)
+
+    suspend fun deleteRevenue(revenue: Revenue)
+
+    fun getTotalRevenue(): Flow<Double>
 
 }
