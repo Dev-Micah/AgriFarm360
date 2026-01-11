@@ -21,7 +21,7 @@ interface RevenueDao {
     suspend fun deleteRevenue(revenue: RevenueEntity)
 
     @Query("SELECT * FROM revenue")
-    suspend fun getAllRevenue(): Flow<List<RevenueEntity>>
+     fun getAllRevenue(): Flow<List<RevenueEntity>>
 
     @Query("SELECT SUM(amount) FROM revenue")
     fun getTotalRevenue(): Flow<Double?>
